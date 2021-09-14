@@ -1,34 +1,31 @@
 import React from 'react';
-import { Box, Button, CompositeZIndex, FixedZIndex, Flex, Layer, Modal, Text, TextField, Dropdown } from "gestalt";
+import { Button, TextField} from "gestalt";
 
 
 const GodChild = () => {
-  const [value, setValue] = React.useState('')
-  const [open, setOpen] = React.useState(false)
-  const [selected, setSelected] = React.useState(undefined)
-  const anchorRef = React.useRef(null)
-  const onSelect = ({item}:any) => setSelected(item)
+  const [identity, setIdentity] = React.useState('')
+  const [name, setName] = React.useState('')
+  const [address, setAddress] = React.useState('')
+  const [email, setEmail] = React.useState('')
+  const [duration, setDuration] = React.useState('')
+
+  // React.useEffect(() => {
+  //   console.log(identity)
+  //   console.log(name)
+  //   console.log(address)
+  //   console.log(email)
+  //   console.log(duration)
+  // }, [identity, name, address, email, duration])
 
   return (
     <div style={{width:'40vw', margin:'auto'}}>
-        <TextField label='Identity' value={value} onChange={({value}) => setValue(value)} id='identity' />
-        <TextField label='이름' value={value} onChange={({value}) => setValue(value)} id='name' />
-        <TextField label='주소' value={value} onChange={({value}) => setValue(value)} id='address' />
-        <TextField label='이메일' value={value} onChange={({value}) => setValue(value)} id='email' />
-        <TextField label='기간' value={value} onChange={({value}) => setValue(value)} id='duration' />
-          {/* <Flex>
-            <Button accessibilityControls='duration-dropdown' ref={anchorRef} accessibilityExpanded={open} text='기간' iconEnd='arrow-down' selected={open} size='md' onClick={() => setOpen(prevVal => !prevVal)} />
-        {open && (
-          <Dropdown anchor={anchorRef.current} id='duration-dropdown' onDismiss={() => setOpen(false)}>
-            <Dropdown.Item onSelect={onSelect} option={{value:'3m', label:'3개월'}} selected={selected} />
-            <Dropdown.Item onSelect={onSelect} option={{value:'6m', label:'6개월'}} selected={selected} />
-            <Dropdown.Item onSelect={onSelect} option={{value:'9m', label:'9개월'}} selected={selected} />
-            <Dropdown.Item onSelect={onSelect} option={{value:'12m', label:'12개월'}} selected={selected} />
-          </Dropdown>
-        )}
-          </Flex> */}
-        <TextField label='본인인증' value={value} onChange={({value}) => setValue(value)} id='identification' />
-          <Button color='red' text='hello' />
+        <TextField label='Identity' value={identity} onChange={({value}) => setIdentity(value)} id='identity' />
+        <TextField label='이름' value={name} onChange={({value}) => setName(value)} id='name' />
+        <TextField label='주소' value={address} onChange={({value}) => setAddress(value)} id='address' />
+        <TextField label='이메일' value={email} onChange={({value}) => setEmail(value)} id='email' />
+        <TextField label='기간' value={duration} onChange={({value}) => setDuration(value)} id='duration' />
+        {/* <TextField label='본인인증' value={value} onChange={({value}) => setValue(value)} id='identification' /> */}
+          <Button color='blue' text='등록하기' />
     </div>
   );
 };
