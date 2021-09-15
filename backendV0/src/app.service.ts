@@ -14,5 +14,6 @@ export class AppService {
       id: this.people.length + 1,
       ...personData
     })
+    console.log(this.getAll())
   }
 }

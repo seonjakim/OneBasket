@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { AppService } from './app.service';
+import { People } from './entities/people.entity';
 
 @Controller()
 export class AppController {
@@ -11,7 +12,7 @@ export class AppController {
   }
 
   @Post()
-  create(@Body() personData) {
-    return this.appService.create(personData)
+  async create(@Body() personData) {
+      return this.appService.create(personData)
   }
 }

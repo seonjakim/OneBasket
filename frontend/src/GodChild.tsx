@@ -9,13 +9,22 @@ const GodChild = () => {
   const [email, setEmail] = React.useState('')
   const [duration, setDuration] = React.useState('')
 
-  // React.useEffect(() => {
-  //   console.log(identity)
-  //   console.log(name)
-  //   console.log(address)
-  //   console.log(email)
-  //   console.log(duration)
-  // }, [identity, name, address, email, duration])
+  
+  const submit = () => {
+      const settings = {
+        method:'POST',
+        headers: {"Content-Type":'application/json; charset=utf-8'},
+        body: JSON.stringify({
+          identity,
+          name,
+          address,
+          email,
+          duration
+        })
+      }
+      console.log(settings)
+     fetch('http://localhost:3000/', settings)
+  }
 
   return (
     <div style={{width:'40vw', margin:'auto'}}>
@@ -25,7 +34,7 @@ const GodChild = () => {
         <TextField label='이메일' value={email} onChange={({value}) => setEmail(value)} id='email' />
         <TextField label='기간' value={duration} onChange={({value}) => setDuration(value)} id='duration' />
         {/* <TextField label='본인인증' value={value} onChange={({value}) => setValue(value)} id='identification' /> */}
-          <Button color='blue' text='등록하기' />
+          <Button onClick={() => submit()} color='blue' text='등록하기' />
     </div>
   );
 };
