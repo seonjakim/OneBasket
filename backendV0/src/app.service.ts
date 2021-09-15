@@ -1,8 +1,18 @@
 import { Injectable } from '@nestjs/common';
+import { People } from './entities/people.entity';
 
 @Injectable()
 export class AppService {
-  getHello(): string {
-    return 'Hello World!';
+  private people: People[] = []
+
+  getAll():People[] {
+    return this.people
+  }
+
+  create(personData) {
+    this.people.push({
+      id: this.people.length + 1,
+      ...personData
+    })
   }
 }
