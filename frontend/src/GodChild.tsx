@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, TextField} from "gestalt";
-
+import emailjs from 'emailjs-com';
+import {SERVICE_ID, TEMPLATE_ID, USER_ID} from './config'
 
 const GodChild = () => {
   const [identity, setIdentity] = React.useState('')
@@ -22,8 +23,18 @@ const GodChild = () => {
           duration
         })
       }
-      console.log(settings)
-     fetch('http://localhost:3000/', settings)
+
+      const toJson = JSON.parse(settings.body)
+
+      emailjs.send(SERVICE_ID, TEMPLATE_ID, toJson, USER_ID)
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+
+    //   console.log(settings)
+    //  fetch('http://localhost:3000/', settings)
   }
 
   return (
