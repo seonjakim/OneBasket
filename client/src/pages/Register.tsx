@@ -90,7 +90,7 @@ const Register = () => {
     // );
 
     //   console.log(settings)
-    //  fetch('http://localhost:3000/', settings)
+    // fetch('http://localhost:3000/', settings);
   };
 
   const infoList = [
