@@ -1,15 +1,13 @@
 import React from 'react';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
-import Apply from './Apply'
-import GodChild from './GodChild';
-import Supporter from './Supporter'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Main from './pages/Main';
+import Register from './pages/Register';
 function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path='/' component={Apply} />
-        <Route exact path='/godparent' component={Supporter} />
-        <Route exact path='/godchild' component={GodChild} />
+        <Route exact path="/" component={Main} />
+        <Route exact path="/register" component={Register} />
       </Switch>
     </Router>
   );
