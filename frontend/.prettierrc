@@ -1,0 +1,7 @@
+{
+  "singleQuote": true,
+  "trailingComma": "all",
+  "printWidth": 80,
+  "javascript.format.enable": false,
+  "typescript.format.enable": false
+}

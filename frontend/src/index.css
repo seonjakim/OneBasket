@@ -1,13 +1,77 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/** CSS reset */
+
+* {
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html,
+body,
+div,
+nav,
+span,
+textarea,
+button,
+ol,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  font: inherit;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+h5 {
+  color: grey;
+}
+
+/** landpage CSS */
+.landpage-container {
+  max-width: 100%;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-image: url(https://images.velog.io/images/seonja/post/103b0972-a23a-46df-b540-edfa692b3cb7/image.png);
+}
+.nav-container {
+  height: 64px;
+  background-color: rgba(245, 245, 245, 0.4);
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 48px;
+}
+.nav-item {
+  font-size: 20px;
+  padding: 20px;
+  margin: auto 0;
+  font-weight: 700;
+  color: #0074e8;
+  cursor: pointer;
+}
+.main-quote {
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 15%;
+}
+
+.register-container {
+  max-width: 40vw;
+  min-width: 300px;
+  margin: auto;
+}
+
+@media (max-width: 960px) {
+  .landpage-container {
+    background-image: url(https://images.velog.io/images/seonja/post/168e4632-3cd6-44f8-827c-03d7a3fe80b6/image.png);
+  }
 }
