@@ -61,15 +61,17 @@ const Register = () => {
       address,
       email,
     };
-    console.log(form);
+    let applicant;
     const personalData = Object.values(form);
     for (let i = 0; i < personalData.length; i++) {
       if (personalData[0] === 'GodParent' && i > 2) {
+        applicant = '장바구니가 필요한 분';
         if (personalData[i].length === 0) {
           alert(`${toKorean[i]}를 작성해주세요.`);
           return;
         }
       } else if (personalData[0] === 'GodChild') {
+        applicant = '장바구니를 지원해주실 분';
         if (personalData[i].length === 0) {
           alert(`${toKorean[i]}를 작성해주세요.`);
           return;
@@ -93,7 +95,12 @@ const Register = () => {
 
     //   console.log(settings)
     const response = await fetch('/', settings);
-    await alert(`${response}`);
+    if (!response.ok) {
+      return new Error('personal data fail to send to server');
+    }
+    await alert(
+      `성공적으로 등록되었습니다. 주변에 ${applicant}이 계시면 이메일로 알려드리겠습니다.`,
+    );
     await history.push('/');
   };
 
