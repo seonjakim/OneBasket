@@ -1,7 +1,7 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { Button, TextField, Divider, Box, TextArea } from 'gestalt';
 import emailjs from 'emailjs-com';
-import { SERVICE_ID, TEMPLATE_ID, USER_ID } from '../config';
 import DropdownGroup from './components/DropdownGroup';
 import { dropdownItems, durationItems, genderItems } from '../data/list';
 
@@ -20,6 +20,8 @@ const Register = () => {
   const [phoneNumber, setPhoneNumber] = React.useState('');
   const [address, setAddress] = React.useState('');
 
+  const history = useHistory();
+
   const toKorean = [
     '등록 포지션',
     '지원이 필요한 이유',
@@ -32,7 +34,7 @@ const Register = () => {
     '이메일',
   ];
   /** send info to email and server */
-  const submit = () => {
+  const submit = async () => {
     /** validation */
     if (identity === null) {
       alert('등록 포지션을 선택해주세요.');
@@ -90,7 +92,9 @@ const Register = () => {
     // );
 
     //   console.log(settings)
-    // fetch('http://localhost:3000/', settings);
+    const response = await fetch('/', settings);
+    await alert(`${response}`);
+    await history.push('/');
   };
 
   const infoList = [
