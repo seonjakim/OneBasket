@@ -41,6 +41,7 @@
 ## 기획
 
 ![](https://images.velog.io/images/seonja/post/d0ac1c33-b0e0-43d7-af38-a6594a8b0ece/image.png)
+
 ![](https://images.velog.io/images/seonja/post/4c6f2dd9-83f2-47e5-9346-2238d563d143/image.png)
 
 [Dribbble](https://dribbble.com/)의 디자인을 참고하여 디자인툴인 Figma에서 Form 형식과 Home 페이지의 틀을 대략적으로 구상하였습니다.
