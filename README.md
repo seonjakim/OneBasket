@@ -1,8 +1,10 @@
-# stack
+# Stack
 
 ![](https://images.velog.io/images/seonja/post/0a4676a0-bca5-434b-b714-9b64533f0a50/image.png)
 
 [하나의 장바구니 방문하기](http://onebasket.kro.kr/)
+
+[트렐로 방문하기](https://trello.com/b/rn6i7mHz/onebasket)
 
 # 하나의 장바구니
 
@@ -28,6 +30,34 @@
 
 ## 이슈트래킹
 
-[트렐로 방문하기](https://trello.com/b/rn6i7mHz/onebasket)
-
 프론트엔드 관련 개발만 해왔던 저는 백엔드, 배포까지 한번 실습해보는 과정을 거쳐 전체적인 사이클을 돌아본 후에 사이트를 디테일하게 구상해보는 방식으로 빠른 사이클 회전이 가능하도록 계획하였습니다.
+
+## MVP
+
+매칭기능이 있으므로 LBS(location based service)형식으로 구현해야겠지만 우선은 빠르게 구현하여 시장이 원하는 것인지 보는 것이 중요하다고 생각하여 장바구니가 필요한 사람과 지원하고 싶은 사람을 **등록하는 페이지**와 **해당 프로젝트에 대한 설명이 포함되어 있는 페이지** 이렇게 2 페이지가 가장 주요한 기능이라고 생각하였습니다.
+
+<br>
+
+## 기획
+
+![reference](https://images.velog.io/images/seonja/post/d0ac1c33-b0e0-43d7-af38-a6594a8b0ece/image.png)
+
+![project plan](https://images.velog.io/images/seonja/post/0109e3d7-3c07-4716-8b50-d46378ebc1c5/Screen%20Shot%202021-09-22%20at%2013.31.37.png)
+
+[Dribbble](https://dribbble.com/)의 디자인을 참고하여 디자인툴인 Figma에서 Form 형식과 Home 페이지의 틀을 대략적으로 구상하였습니다.
+
+<br>
+
+# 최적화
+
+## React.lazy()
+
+## background image base64 encode
+
+![](https://images.velog.io/images/seonja/post/2325845d-33e4-4e90-9706-423a5212761e/image.png)
+
+[참고자료](https://bunny.net/blog/why-optimizing-your-images-with-base64-is-almost-always-a-bad-idea/)
+
+백그라운드 이미지를
+
+# 배포과정에서의 어려움

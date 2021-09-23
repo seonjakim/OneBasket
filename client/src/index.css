@@ -39,7 +39,8 @@ h5 {
   width: 100vw;
   height: 100vh;
   background-size: cover;
-  background-image: url(https://images.velog.io/images/seonja/post/103b0972-a23a-46df-b540-edfa692b3cb7/image.png);
+
+  background-image: url(https://images.velog.io/images/seonja/post/f8159754-11b9-42cc-8c89-be8401a33ed7/background-min.png);
 }
 .nav-container {
   height: 64px;
@@ -72,6 +73,12 @@ h5 {
 
 @media (max-width: 960px) {
   .landpage-container {
-    background-image: url(https://images.velog.io/images/seonja/post/88083d46-59c1-47bf-91e4-c789c4b15844/image.png);
+    background-image: url(https://images.velog.io/images/seonja/post/27e68467-006d-4c57-af87-30b35e569a29/background-min.png);
+  }
+}
+
+@media (max-width: 500px) {
+  .landpage-container {
+    background-image: url(https://images.velog.io/images/seonja/post/8644551d-c825-412b-81ce-1332e0915f9e/background_small-min.png);
   }
 }
