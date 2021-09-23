@@ -1,13 +1,16 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Main from './pages/Main';
-import Register from './pages/Register';
+
+const Register = React.lazy(() => import('./pages/Register'));
 function App() {
   return (
     <Router>
       <Switch>
         <Route exact path="/" component={Main} />
-        <Route exact path="/register" component={Register} />
+        <React.Suspense fallback={<div>Loading...</div>}>
+          <Route exact path="/register" component={Register} />
+        </React.Suspense>
       </Switch>
     </Router>
   );

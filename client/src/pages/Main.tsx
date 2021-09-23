@@ -8,6 +8,7 @@ const Main = () => {
   const setHistory = (endPoint: string) => {
     history.push(endPoint);
   };
+
   return (
     <>
       <div className="landpage-container">

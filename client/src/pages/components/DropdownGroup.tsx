@@ -1,7 +1,21 @@
 import React from 'react';
 import { Flex, Dropdown, Button } from 'gestalt';
 
-const DropdownGroup = ({ selected, onSelect, text, items }) => {
+type Item = { value: string; label: string };
+
+interface DropdownProps {
+  selected: Item;
+  text: string;
+  items: Item[];
+  onSelect: ({ item }) => void;
+}
+
+const DropdownGroup: React.FC<DropdownProps> = ({
+  selected,
+  onSelect,
+  text,
+  items,
+}) => {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
 
