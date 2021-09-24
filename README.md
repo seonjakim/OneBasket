@@ -6,6 +6,17 @@
 
 [트렐로 방문하기](https://trello.com/b/rn6i7mHz/onebasket)
 
+# 목차
+
+[최적화](#최적화)
+
+- [React.lazy()](<#React.lazy()>)
+- [Background image base64 encode](#Background-image-base64-encode)
+
+[배포](#배포과정에서의-어려움)
+
+<br>
+
 # 하나의 장바구니
 
 얼마 전 장을 보고 오던 길에 비틀거리면서 길을 가던 청년을 보고 어떻게 도와줘야 할지를 몰라 그 분이 시야에서 사라질 때까지 고민만하다 집으로 돌아왔습니다.
@@ -45,3 +56,39 @@
 ![project plan](https://images.velog.io/images/seonja/post/0109e3d7-3c07-4716-8b50-d46378ebc1c5/Screen%20Shot%202021-09-22%20at%2013.31.37.png)
 
 [Dribbble](https://dribbble.com/)의 디자인을 참고하여 디자인툴인 Figma에서 Form 형식과 Home 페이지의 틀을 대략적으로 구상하였습니다.
+
+<br>
+
+# 최적화
+
+페이지 로딩시간이 너무 길어 로딩시간을 줄이기 위해 여러 가설을 가지고 최적화 방식을 적용해보았습니다.
+
+## React.lazy()
+
+![](https://images.velog.io/images/seonja/post/f53050d1-a9f5-472b-a68c-4504ffe5016e/image.png)
+
+![](https://images.velog.io/images/seonja/post/960dd20d-d853-483d-bcbc-a908174ebee3/image.png)
+
+사이트에 접속시 화면이 너무 느리게 뜨는 문제점이 있어 상대적으로 많은 코드를 담고 있는 Register 컴포넌트를 동적으로 import했습니다. 코드 자체의 변화는 적었지만 화면이 이전보다 빠르게 접속되고 퍼포먼스 또한 다소 향상된 모습을 확인할 수 있었습니다.
+
+## Background image base64 encode
+
+![](https://images.velog.io/images/seonja/post/2325845d-33e4-4e90-9706-423a5212761e/image.png)
+
+[참고자료](https://bunny.net/blog/why-optimizing-your-images-with-base64-is-almost-always-a-bad-idea/)
+
+이미지를 최적화하는 방법 중 base64로 인코딩하여 적용할 수 있다는 글을 읽은 적이 있어 base64로 인코딩하여 백그라운드 이미지에 적용해보았습니다. 이미지 자체를 가져오는 시간은 줄었지만 퍼포먼스가 낮아졌고 First Contentful Paint도 길어진 것을 확인할 수 있었습니다.
+
+1. 다운로드 사이즈 증가
+
+   base64로 인코딩할 경우 파일 사이즈가 25% 이상 증가한다고 합니다.
+
+1. CPU Overhead
+
+   브라우저가 base64로 인코딩된 이미지를 디코딩해야 하므로 불필요한 연산이 필요하게 됩니다.
+
+1. Caching Issues
+
+   일반 이미지의 경우 브라우저가 캐싱하여 다시 방문할 경우 빠르게 접속할 수 있는 반면 base64로 인코딩된 이미지의 경우 브라우저가 저장할 수 없습니다.
+
+결과적으로 base64로 인코딩하는 방법은 적당하지 않다고 판단하였습니다.
