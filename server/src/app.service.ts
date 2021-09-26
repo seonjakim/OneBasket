@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { PersonalData, PersonalDataDocument } from './app.schema';
 import { Model } from 'mongoose';
+import { PersonalData, PersonalDataDocument } from './app.schema';
 
 @Injectable()
 export class AppService {
