@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Button, TextField, Divider, Box, TextArea } from 'gestalt';
 import emailjs from 'emailjs-com';
-import DropdownGroup from './components/DropdownGroup';
 import {
   identityItems,
   durationItems,
   genderItems,
   toKorean,
-} from '../data/list';
+  emailRegex,
+} from '../constants';
+import { emptyValue, isMessagePopUp } from '../lib/formValidation';
+import DropdownGroup from './components/DropdownGroup';
+import ToastMessage from './components/ToastMessage';
 
 interface Person {
   goal: {
@@ -25,10 +28,16 @@ interface Person {
 }
 
 const Register = () => {
-  const pattern = new RegExp(
-    /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i,
-  );
   const history = useHistory();
+
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+
+  const toastMessagePopUp = (key) => {
+    setToastMessage(`${toKorean[key]}은 필수 항목입니다.`);
+    setShowToast(true);
+    setTimeout(() => setShowToast(false), 3000);
+  };
 
   const [aidType, setAidType] = useState({
     identity: null,
@@ -64,39 +73,30 @@ const Register = () => {
   /** send info to email and server */
   const submit = async () => {
     /** validation */
-    for (const key in aidType) {
-      if (aidType[key] === null) {
-        alert(`${toKorean[key]}을 선택해주세요.`);
-        return;
-      }
-    }
-    for (const key in personalInfo) {
-      if (!personalInfo[key].length) {
-        alert(`${toKorean[key]}를 작성해주세요.`);
-        return;
-      }
-      if (!pattern.test(personalInfo.email)) {
-        alert(`올바른 이메일 주소를 입력해주세요.`);
-        return;
-      }
-    }
     let applicant = '장바구니가 필요한 분';
-    if (aidType.identity.value === 'GodChild') {
+    let personalData = {
+      ...aidType,
+      ...personalInfo,
+    };
+
+    if (aidType.identity !== null && aidType.identity.value === 'GodChild') {
       applicant = '장바구니를 지원해주실 분';
-      for (const key in goal) {
-        if (!goal[key].length) {
-          alert(`${toKorean[key]}를 작성해주세요.`);
-          return;
-        }
-      }
+      personalData = {
+        ...personalData,
+        ...goal,
+      };
     }
 
+    const emptyValueArr = emptyValue(personalData);
+    const messagePopUp = isMessagePopUp(emptyValueArr, toastMessagePopUp);
+
+    if (messagePopUp) return;
+
     const personalDetails = {
-      type: aidType.identity.value,
+      ...personalData,
+      identity: aidType.identity.value,
       duration: aidType.duration.value,
       gender: aidType.gender.value,
-      ...goal,
-      ...personalInfo,
     };
 
     // emailjs
@@ -127,6 +127,7 @@ const Register = () => {
     await alert(
       `성공적으로 등록되었습니다. 주변에 ${applicant}이 계시면 이메일로 알려드리겠습니다.`,
     );
+
     await history.push('/');
   };
 
@@ -173,7 +174,8 @@ const Register = () => {
       label: '이메일',
       id: `email`,
       errorMessage:
-        personalInfo.email.length && pattern.test(personalInfo.email) === false
+        personalInfo.email.length &&
+        emailRegex.test(personalInfo.email) === false
           ? '올바른 이메일 주소를 입력해주세요.'
           : null,
       value: personalInfo.email,
@@ -261,8 +263,16 @@ const Register = () => {
       <h3>개인정보</h3>
       {personalInfoField}
       <Box padding={2} marginBottom={10}>
-        <Button onClick={() => submit()} color="blue" text="등록하기" />
+        <Button
+          accessibilityControls="submit"
+          accessibilityLabel="submit"
+          role="button"
+          onClick={() => submit()}
+          color="blue"
+          text="등록하기"
+        />
       </Box>
+      {showToast ? <ToastMessage message={toastMessage} /> : ''}
     </div>
   );
 };

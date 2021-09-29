@@ -32,6 +32,9 @@ ul {
 h5 {
   color: grey;
 }
+h6 {
+  margin: 10px 0;
+}
 a {
   text-decoration: none;
 }
