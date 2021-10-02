@@ -2,6 +2,8 @@
 
 ![](https://images.velog.io/images/seonja/post/0a4676a0-bca5-434b-b714-9b64533f0a50/image.png)
 
+[Wiki 방문하기](https://github.com/seonjakim/OneBasket/wiki)
+
 [하나의 장바구니 방문하기](http://onebasket.kro.kr/)
 
 [트렐로 방문하기](https://trello.com/b/rn6i7mHz/onebasket)
