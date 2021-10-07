@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Put, Patch, Req } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
@@ -14,4 +14,9 @@ export class AppController {
   async create(@Body() personData) {
     return this.appService.create(personData);
   }
+
+  // @Patch('match')
+  // updateMatchStatus(@Req() request: Request) {
+  //   return this.appService.matchStatus(request);
+  // }
 }

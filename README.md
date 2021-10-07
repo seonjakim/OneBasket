@@ -1,10 +1,14 @@
-# Stack
+## [주의] dev 브랜치에 모든 작업이 이뤄지고 있습니다:)
 
-![](https://images.velog.io/images/seonja/post/0a4676a0-bca5-434b-b714-9b64533f0a50/image.png)
+[Wiki 방문하기 ( 시나리오, 시퀀스 다이어그램이 있어요~ )](https://github.com/seonjakim/OneBasket/wiki)
 
 [하나의 장바구니 방문하기](http://onebasket.kro.kr/)
 
-[트렐로 방문하기](https://trello.com/b/rn6i7mHz/onebasket)
+[트렐로 방문하기 ( 개발 일정과 브랜치 머지과정이 담겨있어요~ )](https://trello.com/b/rn6i7mHz/onebasket)
+
+# Stack
+
+![](https://images.velog.io/images/seonja/post/0a4676a0-bca5-434b-b714-9b64533f0a50/image.png)
 
 # 목차
 
