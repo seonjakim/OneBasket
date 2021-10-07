@@ -1,8 +1,8 @@
-export const emptyValue = (obj: any) => {
+export const arrayOfEmptyValues = (obj: any) => {
   return Object.keys(obj).filter((key) => obj[key] === null || obj[key] === '');
 };
 
-export const isMessagePopUp = (arr: any, callback: (key) => void) => {
+export const emptyValueFound = (arr: any, callback: (key) => void) => {
   if (arr.length) {
     callback(arr[0]);
     return true;

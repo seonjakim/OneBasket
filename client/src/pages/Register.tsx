@@ -9,7 +9,7 @@ import {
   toKorean,
   emailRegex,
 } from '../constants';
-import { emptyValue, isMessagePopUp } from '../lib/formValidation';
+import { arrayOfEmptyValues, emptyValueFound } from '../lib/formValidation';
 import DropdownGroup from './components/DropdownGroup';
 import ToastMessage from './components/ToastMessage';
 
@@ -74,26 +74,26 @@ const Register = () => {
   const submit = async () => {
     /** validation */
     let applicant = '장바구니가 필요한 분';
-    let personalData = {
+    let personalDetails = {
       ...aidType,
       ...personalInfo,
     };
 
     if (aidType.identity !== null && aidType.identity.value === 'GodChild') {
       applicant = '장바구니를 지원해주실 분';
-      personalData = {
-        ...personalData,
+      personalDetails = {
+        ...personalDetails,
         ...goal,
       };
     }
 
-    const emptyValueArr = emptyValue(personalData);
-    const messagePopUp = isMessagePopUp(emptyValueArr, toastMessagePopUp);
+    const emptyValues = arrayOfEmptyValues(personalDetails);
+    const messagePopUp = emptyValueFound(emptyValues, toastMessagePopUp);
 
     if (messagePopUp) return;
 
-    const personalDetails = {
-      ...personalData,
+    personalDetails = {
+      ...personalDetails,
       identity: aidType.identity.value,
       duration: aidType.duration.value,
       gender: aidType.gender.value,
