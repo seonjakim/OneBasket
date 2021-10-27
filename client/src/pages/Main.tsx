@@ -16,6 +16,9 @@ const Main = () => {
           <a className="nav-item" href="#about">
             About
           </a>
+          <span onClick={() => setHistory('/share')} className="nav-item">
+            식료품 나누기
+          </span>
           <span onClick={() => setHistory('/register')} className="nav-item">
             Register
           </span>
