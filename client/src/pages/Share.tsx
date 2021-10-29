@@ -1,11 +1,23 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { actionCreators } from '../state/index';
+import { ActionType } from '../state/action-types';
 
 const Share = () => {
+  const products = useSelector((state) => state);
+  const dispatch = useDispatch();
+
+  const { fetchItems } = bindActionCreators(actionCreators, dispatch);
+  console.log(fetchItems);
+
   const [foodItems, setFoodItems] = React.useState([]);
   React.useEffect(() => {
-    fetch('http://localhost:3000/grocery.json')
-      .then((res) => res.json())
-      .then((data) => setFoodItems(data));
+    fetchItems();
+    console.log(products);
+    // fetch('http://localhost:3000/grocery.json')
+    //   .then((res) => res.json())
+    //   .then((data) => setFoodItems(data));
   }, []);
 
   const foodList = foodItems.map(({ photo, title, address, time }, index) => (

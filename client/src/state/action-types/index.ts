@@ -1,0 +1,5 @@
+export enum ActionType {
+  FETCH_ITEMS = 'FETCH_ITEMS',
+  GET_METHOD = 'GET_METHOD',
+  SELECTED_ITEM = 'SELECTED_ITEM',
+}
