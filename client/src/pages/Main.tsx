@@ -2,12 +2,26 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Button } from 'gestalt';
 
+import { useSelector, useDispatch, shallowEqual, connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { actionCreators, State } from '../state/index';
+
 const Main = () => {
   const history = useHistory();
 
   const setHistory = (endPoint: string) => {
     history.push(endPoint);
   };
+
+  const products = useSelector((state: State) => state.items, shallowEqual);
+  const dispatch = useDispatch();
+
+  const { fetchItems } = bindActionCreators(actionCreators, dispatch);
+  React.useEffect(() => {
+    fetchItems();
+    console.log(products.item);
+    //console.log(props.item);
+  }, []);
 
   return (
     <>

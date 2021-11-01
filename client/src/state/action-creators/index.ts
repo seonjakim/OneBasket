@@ -3,11 +3,39 @@ import storeApi from '../../apis/storeApi';
 import { ActionType } from '../action-types/index';
 
 export const fetchItems = () => async (dispatch: Dispatch) => {
-  const response = await storeApi.get('/products');
+  const response = await fetch('http://localhost:3000/grocery.json');
+  const result = await response.json();
   dispatch({
     type: ActionType.FETCH_ITEMS,
-    payload: response.data,
+    payload: result,
   });
+};
+
+export const addItems = (post) => {
+  return (dispatch) => {
+    dispatch({
+      type: ActionType.ADD_ITEMS,
+      payload: post,
+    });
+  };
+};
+
+export const inputContentChange = (event) => {
+  return (dispatch) => {
+    dispatch({
+      type: ActionType.INPUT_CONTENTS,
+      payload: event,
+    });
+  };
+};
+
+export const dropDownSelect = (event) => {
+  return (dispatch) => {
+    dispatch({
+      type: ActionType.DROP_CONTENTS,
+      payload: event,
+    });
+  };
 };
 
 export const setItems = (items) => {

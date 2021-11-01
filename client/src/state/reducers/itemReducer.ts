@@ -8,6 +8,8 @@ export const itemReducer = (state = init, { type, payload }) => {
   switch (type) {
     case ActionType.FETCH_ITEMS:
       return { ...state, item: payload };
+    case ActionType.ADD_ITEMS:
+      return { ...state, item: payload };
     default:
       return state;
   }

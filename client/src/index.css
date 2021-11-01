@@ -13,6 +13,7 @@ textarea,
 button,
 ol,
 ul,
+article,
 li {
   margin: 0;
   padding: 0;
@@ -40,6 +41,13 @@ a {
 }
 html {
   scroll-behavior: smooth;
+}
+input:focus,
+textarea:focus {
+  outline: none;
+}
+:root {
+  --main-color: #b9e0fb;
 }
 
 /** landpage CSS */
@@ -145,17 +153,24 @@ html {
   padding: 0 2% 2%;
   line-height: 2.5rem;
 }
+.share-container {
+  padding: 0 15vw;
+}
 .card-section {
   display: flex;
   flex-wrap: wrap;
 }
 .card-container {
   width: calc(25% - 44px);
+  min-width: 120px;
   margin: 0 22px 56px;
 }
 .card-photo {
   border-radius: 12px;
   width: 100%;
+}
+.location {
+  color: #777;
 }
 
 @media (max-width: 1100px) {
@@ -168,5 +183,83 @@ html {
   .basket-img {
     top: 40%;
     height: 40%;
+  }
+  .share-container {
+    padding: 0 10vw;
+  }
+}
+
+/** posting */
+.post-container {
+  padding: 5vh 15vw;
+}
+.upload {
+  border: 1px solid #eee;
+  border-width: 1px 0 0;
+  display: flex;
+  padding: 1em 0;
+}
+.input {
+  border: 1px solid #eee;
+  border-width: 1px 0 0;
+  padding: 1.5em 0;
+  width: 100%;
+}
+.post-content {
+  border: 1px solid #eee;
+  border-width: 1px 0 0;
+  height: 40vh;
+  width: 100%;
+  padding: 1.5em 0;
+  resize: none;
+}
+#input-file {
+  display: none;
+}
+.file-upload {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1px solid #eee;
+  color: #777;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+}
+
+.post-button {
+  width: 56px;
+  height: 56px;
+  font-size: 3em;
+  border-radius: 50%;
+  color: #fff;
+  background-color: var(--main-color);
+  position: fixed;
+  right: 5%;
+  top: 85%;
+}
+
+@media (max-width: 650px) {
+  .share-container {
+    padding: 0 3vw;
+  }
+  .card-container {
+    width: 100%;
+    display: flex;
+    font-size: 12px;
+    border-bottom: 1px solid #eee;
+    padding: 1em 0;
+    margin: 0;
+  }
+  .card-photo {
+    width: 30%;
+  }
+  .card-content {
+    padding: 0 5%;
+  }
+
+  .post-container {
+    padding: 5vh 3vw;
   }
 }

@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { actionCreators, State } from '../state/index';
 import { Button, TextField, Divider, Box, TextArea } from 'gestalt';
 import emailjs from 'emailjs-com';
 import {
@@ -28,6 +31,14 @@ interface Person {
 }
 
 const Register = () => {
+  const formContents = useSelector((state: State) => state.forms);
+  const dispatch = useDispatch();
+  console.log(formContents);
+
+  const { inputContentChange, dropDownSelect } = bindActionCreators(
+    actionCreators,
+    dispatch,
+  );
   const history = useHistory();
 
   const [showToast, setShowToast] = useState(false);
@@ -55,21 +66,6 @@ const Register = () => {
     phoneNumber: '',
     address: '',
   });
-  const onGoalChangeEvent = (e) => {
-    const { event, value } = e;
-    setGoal({
-      ...goal,
-      [event.target.id]: value,
-    });
-  };
-  const onPersonalInfoChangeEvent = (e) => {
-    const { event, value } = e;
-    setPersonalInfo({
-      ...personalInfo,
-      [event.target.id]: value,
-    });
-  };
-
   /** send info to email and server */
   const submit = async () => {
     /** validation */
@@ -98,23 +94,6 @@ const Register = () => {
       duration: aidType.duration.value,
       gender: aidType.gender.value,
     };
-
-    // emailjs
-    //   .send(
-    //     process.env.REACT_APP_SERVICE_ID,
-    //     process.env.REACT_APP_TEMPLATE_ID,
-    //     personalDetails,
-    //     process.env.REACT_APP_USER_ID,
-    //   )
-    //   .then(
-    //     (result) => {
-    //       console.log(result.text);
-    //     },
-    //     (error) => {
-    //       console.log(error.text);
-    //     },
-    //   );
-
     const settings = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json; charset=utf-8' },
@@ -147,8 +126,8 @@ const Register = () => {
       type: 'textfield',
       label: '이름',
       id: 'name',
-      value: personalInfo.name,
-      onChange: onPersonalInfoChangeEvent,
+      value: formContents.name,
+      onChange: inputContentChange,
     },
     {
       type: 'dropdown',
@@ -166,8 +145,8 @@ const Register = () => {
       label: '생년월일',
       id: 'birthday',
       placeholder: 'YYYYMMDD형식으로 입력해주세요.',
-      value: personalInfo.birthday,
-      onChange: onPersonalInfoChangeEvent,
+      value: formContents.birthday,
+      onChange: inputContentChange,
     },
     {
       type: 'textfield',
@@ -178,22 +157,22 @@ const Register = () => {
         emailRegex.test(personalInfo.email) === false
           ? '올바른 이메일 주소를 입력해주세요.'
           : null,
-      value: personalInfo.email,
-      onChange: onPersonalInfoChangeEvent,
+      value: formContents.email,
+      onChange: inputContentChange,
     },
     {
       type: 'textfield',
       label: '전화번호',
       id: `phoneNumber`,
-      value: personalInfo.phoneNumber,
-      onChange: onPersonalInfoChangeEvent,
+      value: formContents.phoneNumber,
+      onChange: inputContentChange,
     },
     {
       type: 'textfield',
       label: '주소',
       id: 'address',
-      value: personalInfo.address,
-      onChange: onPersonalInfoChangeEvent,
+      value: formContents.address,
+      onChange: inputContentChange,
     },
   ];
 
@@ -244,16 +223,16 @@ const Register = () => {
           <Box padding={2}>
             <TextArea
               id="reason"
-              value={goal.reason}
-              onChange={onGoalChangeEvent}
+              value={formContents.reason}
+              onChange={inputContentChange}
               label="지원이 필요한 이유"
             />
           </Box>
           <Box padding={2}>
             <TextArea
               id="plan"
-              value={goal.plan}
-              onChange={onGoalChangeEvent}
+              value={formContents.plan}
+              onChange={inputContentChange}
               label="지원 기간 동안의 계획"
             />
           </Box>
