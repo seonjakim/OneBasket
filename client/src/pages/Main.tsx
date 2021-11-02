@@ -2,12 +2,22 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Button } from 'gestalt';
 
+import { useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { actionCreators } from '../state/index';
+
 const Main = () => {
   const history = useHistory();
 
   const setHistory = (endPoint: string) => {
     history.push(endPoint);
   };
+
+  const dispatch = useDispatch();
+  const { getApiCall } = bindActionCreators(actionCreators, dispatch);
+  React.useEffect(() => {
+    //getApiCall();
+  }, []);
 
   return (
     <>
