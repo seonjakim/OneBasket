@@ -5,10 +5,10 @@ import { bindActionCreators } from 'redux';
 import { actionCreators, State } from '../state/index';
 
 const Posting = () => {
-  const product = useSelector((state: State) => state.items);
+  const groceries = useSelector((state: State) => state.groceries);
   const history = useHistory();
   const dispatch = useDispatch();
-  const { addItems } = bindActionCreators(actionCreators, dispatch);
+  const { addGrocery } = bindActionCreators(actionCreators, dispatch);
   const inputFileRef = React.useRef(null);
 
   const [postContent, setPostContent] = React.useState({
@@ -16,7 +16,7 @@ const Posting = () => {
     location: '',
     content: '',
   });
-  const [files, setFile] = React.useState(null);
+  const [uploadFile, setUploadeFile] = React.useState(null);
   const [submitClicked, setSubmitClicked] = React.useState(false);
 
   const inputOnChange = (event) => {
@@ -33,7 +33,7 @@ const Posting = () => {
     const reader = new FileReader();
     const file = event.target.files[0];
     reader.onloadend = () => {
-      setFile({
+      setUploadeFile({
         file,
         previewUrl: reader.result,
       });
@@ -50,19 +50,21 @@ const Posting = () => {
     if (!submitClicked) {
       setSubmitClicked(true);
       const postInput = {
-        image: files?.previewUrl,
+        image: uploadFile?.previewUrl,
         ...postContent,
       };
-      addItems([postInput, ...product.item]);
+      addGrocery([postInput, ...groceries.item]);
       history.push('/share');
     }
   };
 
   return (
     <div className="post-container">
-      <div>
-        물품보러가기
-        <button onClick={submit}>Done</button>
+      <div className="sub-nav">
+        <h2>물품보러가기</h2>
+        <button className="done-button" onClick={submit}>
+          Done
+        </button>
       </div>
       <div className="upload">
         <div onClick={uploadFileOnClick} className="file-upload">
@@ -75,11 +77,11 @@ const Posting = () => {
           accept="image/jpg,impge/png,image/jpeg,image/gif"
           onChange={handleFileOnChange}
         />
-        {files && (
+        {uploadFile && (
           <img
             className="file-upload"
-            src={files?.previewUrl}
-            alt={files?.file.name}
+            src={uploadFile?.previewUrl}
+            alt={uploadFile?.file.name}
           />
         )}
       </div>

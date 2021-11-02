@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 import { formReducer } from './formReducer';
-import { itemReducer } from './itemReducer';
+import { groceryReducer } from './groceryReducer';
 
 const reducers = combineReducers({
-  items: itemReducer,
+  groceries: groceryReducer,
   forms: formReducer,
 });
 

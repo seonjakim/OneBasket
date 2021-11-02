@@ -1,20 +1,20 @@
 import { Dispatch } from 'redux';
-import storeApi from '../../apis/storeApi';
 import { ActionType } from '../action-types/index';
+import { Action } from '../actions/index';
 
-export const fetchItems = () => async (dispatch: Dispatch) => {
+export const getApiCall = () => async (dispatch: Dispatch) => {
   const response = await fetch('http://localhost:3000/grocery.json');
   const result = await response.json();
   dispatch({
-    type: ActionType.FETCH_ITEMS,
+    type: ActionType.API_GET,
     payload: result,
   });
 };
 
-export const addItems = (post) => {
-  return (dispatch) => {
+export const addGrocery = (post) => {
+  return (dispatch: Dispatch<Action>) => {
     dispatch({
-      type: ActionType.ADD_ITEMS,
+      type: ActionType.ADD_GROCERY,
       payload: post,
     });
   };
@@ -35,19 +35,5 @@ export const dropDownSelect = (event) => {
       type: ActionType.DROP_CONTENTS,
       payload: event,
     });
-  };
-};
-
-export const setItems = (items) => {
-  return {
-    type: ActionType.GET_METHOD,
-    payload: items,
-  };
-};
-
-export const selectedItem = (item) => {
-  return {
-    type: ActionType.SELECTED_ITEM,
-    payload: item,
   };
 };

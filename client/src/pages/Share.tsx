@@ -6,11 +6,11 @@ import { actionCreators, State } from '../state/index';
 import { ActionType } from '../state/action-types';
 
 const Share = () => {
-  const products = useSelector((state: State) => state.items);
+  const groceries = useSelector((state: State) => state.groceries);
   // const dispatch = useDispatch();
-  // const { fetchItems } = bindActionCreators(actionCreators, dispatch);
+  // const { getApiCall } = bindActionCreators(actionCreators, dispatch);
 
-  const foodList = products.item.map(
+  const groceryList = groceries.item.map(
     ({ image, title, location, time }, index) => (
       <article key={index} className="card-container">
         <img className="card-photo" src={image} alt="" />
@@ -26,7 +26,7 @@ const Share = () => {
   return (
     <div className="share-container">
       <h1>내 주변 식료품 공유</h1>
-      <div className="card-section">{foodList}</div>
+      <div className="card-section">{groceryList}</div>
       <Link to="/posting">
         <button className="post-button">+</button>
       </Link>

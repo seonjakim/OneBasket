@@ -263,3 +263,13 @@ textarea:focus {
     padding: 5vh 3vw;
   }
 }
+.sub-nav {
+  display: flex;
+  justify-content: space-between;
+}
+.done-button {
+  padding: 0 2rem;
+  color: #0074e8;
+  background-color: transparent;
+  font-size: 1.3em;
+}
